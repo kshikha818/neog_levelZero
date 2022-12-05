@@ -1,136 +1,120 @@
 var readLineSync = require('readline-sync');
 var score= 0;
-console.log("Shikha Kumari");
-console.log("--------------");
 var name = readLineSync.question("What is you name? ");
-console.log(name);
-console.log("--------------");
-console.log("Welcome " + name +" to this Amazing game !! ");
 console.log("--------------"); 
-// var name1 = readLineSync.question("May I know you name? ");
-// console.log("Welcome "+name);
-// console.log("--------------"); 
-var Question1= readLineSync.question("Is my age greater than 25? ");
-var Answer1="no";
-if(Question1 === Answer1){
-  console.log("You are right! ");
-}
-else{
-  console.log("You are wrong! ");
-}
-console.log("--------------");
-var Question2 = readLineSync.question("Is my hometown Patna? ");
-var Answer2="yes";
-if(Question2 === Answer2){
-  console.log("you are right! ");
-  score=score+1;
-  console.log("your score is: "+ score);
-}
-else{
-  console.log("you are wrong! ");
-  score=score-1;
-  console.log("your score is: "+ score);
-}
-console.log("--------------");
-function add(num1,num2){
-  var sum=num1+num2;
-  return sum;
+console.log("Welcome " + name +" to this Amazing QuiZ Game !! ");
+console.log("--------------"); 
+var highScore =[  
+  {
+    name: 'Shikha',
+    score: 10,
+  },
+  {
+    name: 'Mukul',
+    score: 9,
+  },
+  {
+    name: 'Abhinav',
+    score: 7,
+  },
   
-}
-var result = add(2,3);
-console.log("sum of 2 and 3 is: "+ result);
-console.log("--------------");
-
-function check(quest,ans){
-  var userAnswer = readLineSync.question(quest);
-  if(userAnswer==ans){
-    console.log("you are right! ");
-    score=score+1;
-  }
-  else{
-    console.log("you are wrong! ");
-    score=score-1;
-  }
-}
-check("what is my favourite colour? ","black");
-check("what is my favourite food? ","noodles");
-console.log("your current score is: "+score);
-console.log("--------------");
-
-for(var i=0;i<5;i++)
+]
+var questions = [
   {
-    console.log("Shikha"+i);
-  }
-console.log("--------------");
--------------------Homework-------------------------------------
-var s = "";
-for(var i = 1; i <= 5; i++)
+    question: "What is my name? ",
+    answer: "Shikha",
+  },
   {
-    for(var j = 0; j < i; j++){
-      s += "*";
+    question: "What is my nickname? ",
+    answer: "nanhi",
+  },
+  {
+    question: "Is my age greater than 25? ",
+    answer: "no",
+  },
+  {
+    question: "Is my hometown Patna? ",
+    answer: "yes",
+  },
+  {
+    question: "what is my favourite colour? ",
+    answer: "black",
+  },
+  {
+    question: "what is my favourite food? ",
+    answer: "noodles",
+  },
+  {
+    question: "what is my favourite number? ",
+    answer: "7",
+  },
+  {
+    question: "Who is my favorite superhero? ",
+    answer: "ironman",
+  },
+  {
+    question: "Which is my favorite sad song? ",
+    answer: "judai",
+  },
+  {
+    question: "what is my birth year? ",
+    answer: "1997",
+  },
+  {
+    question: "what is my birth date? ",
+    answer: "27",
+  }
+];
+function play(question,answer)
+  {
+    var userAnswer=readLineSync.question(question);
+    console.log("User entered .."+userAnswer);
+    console.log('\n');
+    if(userAnswer === answer)
+    {
+      score=score+1;
+      console.log("you are right! your current score is: "+score);
+      console.log("--------------");
     }
-    s += "\n";
-  }
-console.log(s);
-console.log("--------------");
-var s = "";
-for(var i = 1; i <= 5; i++)
-  {
-    for(var j = 0; j <= 5-i; j++){
-      s += "*";
+    else{
+      console.log("you are wrong! your current score is: "+score);
+      console.log("--------------");
     }
-    s += "\n";
   }
-console.log(s);
 console.log("--------------");
-var groceryItem = ["sugar","milk","bread","butter","salt"];
-console.log(groceryItem[0]);
-console.log(groceryItem[2]);
-console.log(groceryItem[groceryItem.length-1]);
+for(var i=0; i<questions.length; i++)
+  {
+    if(i===questions.length/2)
+    {
+      console.log("You are upgraded to level 2.... Congratulations!!! ");
+    }
+    var quest=questions[i];
+    play(quest.question, quest.answer);
+  }
 console.log("--------------");
-for(var i=0;i<groceryItem.length;i++){
-  console.log(groceryItem[i]);
-}
+console.log("your final score: "+score);
 console.log("--------------");
-var superheros=[ironman={
-  name: "ironman",
-  power: "technology",
-  costumeColor: "Red",
-  strength: 500,
-  stealth: 1000,
-},
-hulk={
-  name: "hulk",
-  power: "fight",
-  costumeColor: "green",
-  strength: 1000,
-  stealth: 500,
-}];
-console.log(ironman.stealth);
-console.log(ironman.strength);
-if(ironman.strength>hulk.strength)
-{
-  console.log("you are right! ");
-}
-else{
-  console.log("you are wrong! ");
-}
-questionOne = {
-  question: "Who is my favorite superhero? ",
-  answer: "Dhruv",
-}
-questionTwo = {
-  question: "Which is my favorite sad song?",
-  answer: "Channa Meraya",
-}
 
-var userAnswer=readLineSync.question(questionOne.question);
-if(userAnswer === questionOne.answer)
+var userQuery = readLineSync.question("do you want to know the high scores? (y/n) ");
+var count = 0;
+if(userQuery === "y")
 {
-  score = score+1;
-  console.log("you are right! your current score is: "+score);
-}else
-{
-  score = score-1;
-  console.log("you are wrong! your current score is: "+score);
+
+  for(var j = 0 ; j < highScore.length ; j++)
+  {
+      
+         var currentHighScore = highScore[j];
+         console.log(currentHighScore.name + ":" + currentHighScore.score);
+       
+       if(score > currentHighScore.score)
+       {
+         count = count+1;
+     
+       }
+  }
+  console.log("--------------");
+  if(count===3)
+  {
+     console.log("congratulations ! you are the high scorer, send me the screenshot");
+  } 
 }
